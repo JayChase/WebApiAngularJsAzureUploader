@@ -4,10 +4,8 @@
     angular
         .module('app')
         .controller('welcome', welcome);
-
-    welcome.$inject = ['$location']; 
-
-    function welcome($location) {
+        
+    function welcome() {
         var vm = this;
         
         activate();

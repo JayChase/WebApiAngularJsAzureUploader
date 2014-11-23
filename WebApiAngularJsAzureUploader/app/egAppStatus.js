@@ -7,7 +7,7 @@
 
     egAppStatus.$inject = ['appInfo'];
     
-    function egAppStatus(appInfo) { 
+    function egAppStatus(appInfo) {     
         var directive = {
             link: link,
             restrict: 'E',
@@ -15,16 +15,8 @@
         };
         return directive;
 
-        function link(scope, element, attrs) {
-            scope.busy = appInfo.busy;
-
-            scope.$watch(function () {
-                return appInfo.message;
-            },
-            function (newMsg) {
-                scope.message = newMsg;
-            });
-            scope.message = appInfo.message;
+        function link(scope, element, attrs) {     
+            scope.status = appInfo.status;
         }
     }
 

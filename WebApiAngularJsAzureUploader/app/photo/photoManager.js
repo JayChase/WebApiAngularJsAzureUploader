@@ -14,7 +14,9 @@
             upload: upload,
             remove: remove,
             photoExists: photoExists,
-            uploading: false       
+            status: {
+                uploading: false
+            }
         };
 
         return service;
@@ -48,7 +50,7 @@
 
         function upload(photos)
         {
-            service.uploading = true;
+            service.status.uploading = true;
             appInfo.setInfo({ busy: true, message: "uploading photos" });            
 
             var formData = new FormData();
@@ -79,7 +81,7 @@
                                         ['finally'](
                                         function () {
                                             appInfo.setInfo({ busy: false });                                            
-                                            service.uploading = false;
+                                            service.status.uploading = false;
                                         });
         }
 

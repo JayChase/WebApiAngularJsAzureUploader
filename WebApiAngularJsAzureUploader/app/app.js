@@ -8,6 +8,7 @@
         $routeProvider.when('/welcome', {
             templateUrl: 'app/welcome.html',
             controller: 'welcome',
+            controllerAs: 'vm',
             caseInsensitiveMatch: true
         });
         $routeProvider.when('/photos', {
@@ -20,6 +21,7 @@
             redirectTo: '/welcome'
         });
     }]);
+
 
     // Handle routing errors and success events
     app.run([function () {        

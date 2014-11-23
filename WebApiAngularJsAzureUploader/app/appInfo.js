@@ -7,8 +7,10 @@
 
     function appInfo() {
         var service = {
-            busy: false,
-            message: '',
+            status: {
+                busy: false,
+                message: ''
+            },
             setInfo: setInfo
         };
 
@@ -16,15 +18,15 @@
 
         function setInfo(args) {
             if (args) {
-                if (args.busy) {
-                    service.busy = args.busy;
+                if (args.hasOwnProperty('busy')) {             
+                    service.status.busy = args.busy;
                 }
-                if (args.message) {
-                    service.message = args.message;
+                if (args.hasOwnProperty('message')) {                    
+                    service.status.message = args.message;
                 }
             } else {
-                service.busy = false;
-                service.message = '';
+                service.status.busy = false;
+                service.status.message = '';
             }
         }
     }

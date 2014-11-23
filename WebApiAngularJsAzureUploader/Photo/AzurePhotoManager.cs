@@ -93,7 +93,8 @@ namespace WebApiAngularJsAzureUploader.Photo
                     Name = blob.Name,
                     Size = blob.Properties.Length / 1024,
                     Created = blob.Metadata["Created"] == null ? DateTime.Now : DateTime.Parse(blob.Metadata["Created"]),
-                    Modified = ((DateTimeOffset)blob.Properties.LastModified).DateTime
+                    Modified = ((DateTimeOffset)blob.Properties.LastModified).DateTime,
+                    Url = blob.Uri.AbsoluteUri
                 });
             }
 

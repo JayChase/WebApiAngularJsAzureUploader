@@ -19,15 +19,10 @@
 
         function link(scope, element, attrs) {
             scope.hasFiles = false;
-            scope.photos = [];
-            scope.appBusy = appInfo.busy;
+            scope.photos = [];            
             scope.upload = photoManager.upload;
-            
-            scope.$watch(function () {
-                return photoManager.uploading;
-            }, function () {
-                scope.uploading = photoManager.uploading;
-            });
+            scope.appStatus = appInfo.status;
+            scope.photoManagerStatus = photoManager.status;
         }
     }
 

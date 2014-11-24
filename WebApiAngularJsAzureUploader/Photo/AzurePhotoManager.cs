@@ -29,7 +29,7 @@ namespace WebApiAngularJsAzureUploader.Photo
 
             if (! await photoContainer.ExistsAsync())
             {
-                await photoContainer.CreateAsync(BlobContainerPublicAccessType.Container, null, null);                
+                await photoContainer.CreateAsync(BlobContainerPublicAccessType.Blob, null, null);                
             }
 
             var photos = new List<PhotoViewModel>();

@@ -13,15 +13,15 @@ using WebApiAngularJsAzureUploader.Photo;
 
 namespace WebApiAngularJsAzureUploader.Controllers
 {
-    [RoutePrefix("api/photo")]
-    public class PhotoController : ApiController
-    {
-        private IPhotoManager photoManager;
+[RoutePrefix("api/photo")]
+public class PhotoController : ApiController
+{
+    private IPhotoManager photoManager;
 
-        public PhotoController()
-            : this(new AzurePhotoManager(CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzurePhotoStorage"].ConnectionString), "pictures"))
-        {            
-        }
+    public PhotoController()
+        : this(new AzurePhotoManager(CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzurePhotoStorage"].ConnectionString), "pictures"))
+    {            
+    }
 
         public PhotoController(IPhotoManager photoManager)
         {

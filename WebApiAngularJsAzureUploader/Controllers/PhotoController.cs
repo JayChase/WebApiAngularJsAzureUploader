@@ -13,15 +13,15 @@ using WebApiAngularJsAzureUploader.Photo;
 
 namespace WebApiAngularJsAzureUploader.Controllers
 {
-[RoutePrefix("api/photo")]
-public class PhotoController : ApiController
-{
-    private IPhotoManager photoManager;
+    [RoutePrefix("api/photo")]
+    public class PhotoController : ApiController
+    {
+        private IPhotoManager photoManager;
 
-    public PhotoController()
-        : this(new AzurePhotoManager(CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzurePhotoStorage"].ConnectionString), "pictures"))
-    {            
-    }
+        public PhotoController()
+            : this(new AzurePhotoManager(CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzurePhotoStorage"].ConnectionString), "pictures"))
+        {
+        }
 
         public PhotoController(IPhotoManager photoManager)
         {
@@ -31,7 +31,6 @@ public class PhotoController : ApiController
         // GET: api/Photo
         public async Task<IHttpActionResult> Get()
         {
-            //return new List<object> { "hola", "quetal" };
             var results = await photoManager.Get();
             return Ok(new { photos = results });
         }
@@ -40,7 +39,7 @@ public class PhotoController : ApiController
         public async Task<IHttpActionResult> Post()
         {
             // Check if the request contains multipart/form-data.
-            if(!Request.Content.IsMimeMultipartContent("form-data"))
+            if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
                 return BadRequest("Unsupported media type");
             }
@@ -53,7 +52,7 @@ public class PhotoController : ApiController
             catch (Exception ex)
             {
                 return BadRequest(ex.GetBaseException().Message);
-            }            
+            }
         }
 
         // DELETE: api/Photo/5
@@ -66,15 +65,16 @@ public class PhotoController : ApiController
                 return NotFound();
             }
 
-           var result = await this.photoManager.Delete(fileName);
+            var result = await this.photoManager.Delete(fileName);
 
-           if (result.Successful)
-           {
-               return Ok(result.Message);
-           } else
-           {
-               return BadRequest(result.Message);
-           }
+            if (result.Successful)
+            {
+                return Ok(result.Message);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
         }
     }
 }

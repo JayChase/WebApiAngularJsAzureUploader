@@ -53,10 +53,16 @@ namespace WebApiAngularJsAzureUploader.Photo
 
         public override string GetLocalFileName(System.Net.Http.Headers.HttpContentHeaders headers)
         {
-            //Make the file name URL safe and then use it & is the only disallowed url character allowed in a windows filename
+            //Make the file name URL safe and then use it & is the only disallowed url character allowed in a windows filename            
             var name = !string.IsNullOrWhiteSpace(headers.ContentDisposition.FileName) ? headers.ContentDisposition.FileName : "NoName";
-            return name.Trim(new char[] { '"' })
+
+            name = name.Trim(new char[] { '"' })
                         .Replace("&", "and");
+
+            //IE sets the full path as the file name 
+            name = Path.GetFileName(name);
+
+            return name;
         }
     }
 }
